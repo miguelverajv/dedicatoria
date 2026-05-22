@@ -16,29 +16,52 @@
       text-align: center;
     }
 
+    /* HERO */
     .hero {
+      position: relative;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
-      background: url('de_tu_mano.jpg') center/cover no-repeat;
-      position: relative;
+      overflow: hidden;
     }
 
+    /* Fondo borroso */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('de_tu_mano.jpg') center/cover no-repeat;
+      filter: blur(25px) brightness(0.6);
+      transform: scale(1.1);
+      z-index: 0;
+    }
+
+    /* Imagen completa sin recorte */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('de_tu_mano.jpg') center/contain no-repeat;
+      z-index: 1;
+      opacity: 0.95;
+    }
+
+    /* Oscurecido suave */
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.55);
+      background: rgba(0,0,0,0.45);
+      z-index: 2;
     }
 
     .content {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       max-width: 800px;
     }
 
-    /* 🔥 TEXTO PRINCIPAL MÁS GRANDE */
     h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 4.2rem;
@@ -48,7 +71,6 @@
       line-height: 1.1;
     }
 
-    /* 🔥 TEXTO SECUNDARIO MÁS GRANDE */
     p {
       font-size: 1.6rem;
       opacity: 0.9;
@@ -56,7 +78,6 @@
       line-height: 1.5;
     }
 
-    /* 🔥 BOTÓN MÁS GRANDE Y PROTAGONISTA */
     a.button {
       display: inline-block;
       padding: 16px 36px;
@@ -91,7 +112,7 @@
       font-size: 1.2rem;
     }
 
-    /* 📱 RESPONSIVE */
+    /* RESPONSIVE */
     @media (max-width: 600px) {
 
       h1 {
@@ -113,6 +134,7 @@
 <body>
 
 <div class="hero">
+
   <div class="overlay"></div>
 
   <div class="content">
@@ -126,6 +148,7 @@
     <a href="#video" class="button">Esto es para ti</a>
 
   </div>
+
 </div>
 
 <section id="video">
